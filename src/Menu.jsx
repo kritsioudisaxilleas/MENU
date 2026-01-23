@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/button";
 import { cn } from "@/components/utils";
-import logo from "@/assets/logo.png";
-
-
 
 const menuData = {
 appetizers: [
@@ -19,26 +16,8 @@ appetizers: [
     },
     price: 5.50
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ],
   pizzas: [
-    
-     
     {
       id: 24,
       name: { en: "Tapa's Pizza", el: "Πίτσα του Τάπα" },
@@ -254,23 +233,23 @@ function PizzaItem({ item, lang }) {
   const [selectedSize, setSelectedSize] = useState("30cm");
   
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm transition-all duration-200 ease-out hover:shadow-md">
-      <div className="flex justify-between items-start gap-4 mb-4">
-        <div className="flex-1">
-          <h3 className="text-base font-bold text-gray-900 leading-snug">{item.name[lang]}</h3>
-          <p className="text-sm font-medium text-gray-600 mt-1.5 leading-relaxed">{item.description[lang]}</p>
+    <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm transition-all duration-200 ease-out hover:shadow-md">
+      <div className="flex justify-between items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug break-words">{item.name[lang]}</h3>
+          <p className="text-xs sm:text-sm font-medium text-gray-600 mt-1.5 leading-relaxed break-words">{item.description[lang]}</p>
         </div>
-        <span className="text-lg font-bold text-red-600 whitespace-nowrap ml-2">
+        <span className="text-base sm:text-lg font-bold text-red-600 whitespace-nowrap ml-2 flex-shrink-0">
           €{item.prices[selectedSize].toFixed(2)}
         </span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-1.5 sm:gap-2">
         {pizzaSizes.map((size) => (
           <button
             key={size}
             onClick={() => setSelectedSize(size)}
             className={cn(
-              "flex-1 py-2.5 px-3 rounded-full text-sm font-medium transition-all duration-200 ease-out",
+              "flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ease-out",
               selectedSize === size
                 ? "bg-red-600 text-white shadow-md scale-105"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-95"
@@ -286,13 +265,13 @@ function PizzaItem({ item, lang }) {
 
 function MenuItem({ item, lang }) {
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm transition-all duration-200 ease-out hover:shadow-md">
-      <div className="flex justify-between items-start gap-4">
-        <div className="flex-1">
-          <h3 className="text-base font-semibold text-gray-900">{item.name[lang]}</h3>
-          <p className="text-sm text-gray-600 mt-1.5 leading-relaxed">{item.description[lang]}</p>
+    <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm transition-all duration-200 ease-out hover:shadow-md">
+      <div className="flex justify-between items-start gap-3 sm:gap-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm sm:text-base font-semibold text-gray-900 break-words">{item.name[lang]}</h3>
+          <p className="text-xs sm:text-sm text-gray-600 mt-1.5 leading-relaxed break-words">{item.description[lang]}</p>
         </div>
-        <span className="text-lg font-bold text-red-600 whitespace-nowrap ml-2">
+        <span className="text-base sm:text-lg font-bold text-red-600 whitespace-nowrap ml-2 flex-shrink-0">
           €{item.price.toFixed(2)}
         </span>
       </div>
@@ -338,68 +317,63 @@ export default function Menu() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 ">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
-        <div className="px-4 py-2">
+        <div className="px-3 sm:px-4 py-2">
           {/* Logo & Language Toggle */}
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center justify-between mb-3 sm:mb-5">
             <button
-  onClick={scrollToTop} 
-  type="button"
-  className="flex items-center gap-3 rounded-2xl bg-white/90 border border-gray-100 px-3 py-2 shadow-sm transition-all duration-200 ease-out active:scale-95"
->
-  <div className="w-11 h-11 rounded-full bg-white border border-gray-200 flex items-center justify-center overflow-hidden">
-  <img
-    src={logo}
-    alt="Ristorante logo"
-    className="w-full h-full object-contain"
-  />
-</div>
-  <span className="text-[15px] font-bold text-gray-900 tracking-tight"> PizzaTapas</span>
-</button>
+              onClick={scrollToTop} 
+              type="button"
+              className="flex items-center gap-2 sm:gap-3 rounded-2xl bg-white/90 border border-gray-100 px-2 sm:px-3 py-1.5 sm:py-2 shadow-sm transition-all duration-200 ease-out active:scale-95"
+            >
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-lg sm:text-xl font-bold">🍕</span>
+              </div>
+              <span className="text-sm sm:text-[15px] font-bold text-gray-900 tracking-tight">PizzaTapas</span>
+            </button>
 
-            
-            <div className="inline-flex rounded-full bg-gray-100 p-1 border border-gray-200">
-  <button
-    type="button"
-    onClick={() => setLang("el")}
-    className={cn(
-      "px-4 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ease-out",
-      lang === "el"
-        ? "bg-red-600 text-white shadow-sm"
-        : "bg-white text-gray-700 hover:bg-gray-100"
-    )}
-  >
-    ΕΛ
-  </button>
+            <div className="inline-flex rounded-full bg-gray-100 p-1 border border-gray-200 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => setLang("el")}
+                className={cn(
+                  "px-3 sm:px-4 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ease-out",
+                  lang === "el"
+                    ? "bg-red-600 text-white shadow-sm"
+                    : "bg-white text-gray-700 hover:bg-gray-100"
+                )}
+              >
+                ΕΛ
+              </button>
 
-  <button
-    type="button"
-    onClick={() => setLang("en")}
-    className={cn(
-      "px-4 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ease-out",
-      lang === "en"
-        ? "bg-red-600 text-white shadow-sm"
-        : "bg-white text-gray-700 hover:bg-gray-100"
-    )}
-  >
-    EN
-  </button>
-</div>
+              <button
+                type="button"
+                onClick={() => setLang("en")}
+                className={cn(
+                  "px-3 sm:px-4 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ease-out",
+                  lang === "en"
+                    ? "bg-red-600 text-white shadow-sm"
+                    : "bg-white text-gray-700 hover:bg-gray-100"
+                )}
+              >
+                EN
+              </button>
+            </div>
           </div>
 
           {/* Category Navigation */}
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-3 px-3 sm:mx-0 sm:px-0">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => {
-                setActiveSection(cat.id);
-                scrollToSection(cat.id);
-                 }}
+                  setActiveSection(cat.id);
+                  scrollToSection(cat.id);
+                }}
                 className={cn(
-                  "min-w-[120px] py-3 px-4 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200",
+                  "min-w-[90px] sm:min-w-[120px] py-2.5 sm:py-3 px-3 sm:px-4 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0",
                   activeSection === cat.id
                     ? "bg-red-50 text-red-700 border border-red-500 shadow-sm"
                     : "bg-white text-gray-700 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:scale-95"
@@ -413,57 +387,61 @@ export default function Menu() {
       </div>
 
       {/* Menu Sections */}
-      <div className="px-5 py-6 space-y-12 pb-10">
+      <div className="px-4 sm:px-5 py-6 space-y-10 sm:space-y-12 pb-10">
         {/* Appetizers */}
         <section id="appetizers">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">
             {lang === 'en' ? 'Appetizers' : 'Ορεκτικά'}
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {menuData.appetizers.map((item) => (
               <MenuItem key={item.id} item={item} lang={lang} />
             ))}
           </div>
         </section>
-{/* Salads */}
+
+        {/* Salads */}
         <section id="salads">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">
             {lang === 'en' ? 'Salads' : 'Σαλάτες'}
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {menuData.salads.map((item) => (
               <MenuItem key={item.id} item={item} lang={lang} />
             ))}
           </div>
         </section>
-       {/* Pizzas */}
+
+        {/* Pizzas */}
         <section id="pizzas">
-          <h2 className="text-lg font-extrabold text-gray-900 mb-4">
+          <h2 className="text-base sm:text-lg font-extrabold text-gray-900 mb-3 sm:mb-4">
             {lang === 'en' ? 'Pizzas' : 'Πίτσες'}
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {menuData.pizzas.map((item) => (
               <PizzaItem key={item.id} item={item} lang={lang} />
             ))}
           </div>
         </section>
+
         {/* Pastas */}
         <section id="pastas">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">
             {lang === 'en' ? 'Pastas' : 'Ζυμαρικά'}
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {menuData.pastas.map((item) => (
               <MenuItem key={item.id} item={item} lang={lang} />
             ))}
           </div>
         </section>
-      {/* Drinks */}
+
+        {/* Drinks */}
         <section id="drinks">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">
             {lang === 'en' ? 'Drinks' : 'Ποτά'}
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {menuData.drinks.map((item) => (
               <MenuItem key={item.id} item={item} lang={lang} />
             ))}
@@ -471,9 +449,8 @@ export default function Menu() {
         </section>
       </div>
 
-
       {/* Footer Information */}
-      <div className="px-5 py-6 bg-white">
+      <div className="px-4 sm:px-5 py-6 bg-white">
         <p className="text-xs font-medium text-gray-400 text-center leading-relaxed">
           {lang === 'en' 
             ? 'All prices include VAT • Please inform us about any food allergies'
