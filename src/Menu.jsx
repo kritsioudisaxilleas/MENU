@@ -147,7 +147,7 @@ export default function Menu() {
   }, [content.categories]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       <MenuHeader 
         language={language} 
         onLanguageChange={setLanguage} 
@@ -159,7 +159,7 @@ export default function Menu() {
         onCategoryClick={scrollToSection}
       />
 
-      <main className="pb-12">
+      <main className="pb-8 w-full">
         {/* Appetizers */}
         <MenuSection id="appetizers" title={content.categories[0].name}>
           {content.appetizers.map((item, idx) => (
@@ -197,7 +197,7 @@ export default function Menu() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-100 py-6 px-4 text-center">
+      <footer className="border-t border-gray-100 py-5 px-3 text-center w-full">
         <p className="text-sm text-gray-400">
           {language === 'el' ? 'Καλή όρεξη!' : 'Buon appetito!'}
         </p>
